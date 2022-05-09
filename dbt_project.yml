@@ -1,0 +1,135 @@
+name: airbyte_utils
+version: '1.0'
+config-version: 2
+profile: normalize
+model-paths:
+- models
+docs-paths:
+- docs
+analysis-paths:
+- analysis
+test-paths:
+- tests
+seed-paths:
+- data
+macro-paths:
+- macros
+target-path: ../build
+log-path: ../logs
+packages-install-path: /dbt
+clean-targets:
+- build
+- dbt_modules
+quoting:
+  database: true
+  schema: false
+  identifier: true
+models:
+  airbyte_utils:
+    +materialized: table
+    generated:
+      airbyte_ctes:
+        +tags: airbyte_internal_cte
+        +materialized: ephemeral
+      airbyte_incremental:
+        +tags: incremental_tables
+        +materialized: incremental
+        +on_schema_change: sync_all_columns
+      airbyte_tables:
+        +tags: normalized_tables
+        +materialized: table
+      airbyte_views:
+        +tags: airbyte_internal_views
+        +materialized: view
+dispatch:
+- macro_namespace: dbt_utils
+  search_order:
+  - airbyte_utils
+  - dbt_utils
+vars:
+  json_column: _airbyte_data
+  models_to_source:
+    pokemon_ab1: poke._airbyte_raw_pokemon
+    pokemon_ab2: poke._airbyte_raw_pokemon
+    pokemon_ab3: poke._airbyte_raw_pokemon
+    pokemon: poke._airbyte_raw_pokemon
+    pokemon_forms_ab1: poke._airbyte_raw_pokemon
+    pokemon_forms_ab2: poke._airbyte_raw_pokemon
+    pokemon_forms_ab3: poke._airbyte_raw_pokemon
+    pokemon_forms: poke._airbyte_raw_pokemon
+    pokemon_moves_ab1: poke._airbyte_raw_pokemon
+    pokemon_moves_ab2: poke._airbyte_raw_pokemon
+    pokemon_moves_ab3: poke._airbyte_raw_pokemon
+    pokemon_moves: poke._airbyte_raw_pokemon
+    pokemon_stats_ab1: poke._airbyte_raw_pokemon
+    pokemon_stats_ab2: poke._airbyte_raw_pokemon
+    pokemon_stats_ab3: poke._airbyte_raw_pokemon
+    pokemon_stats: poke._airbyte_raw_pokemon
+    pokemon_types_ab1: poke._airbyte_raw_pokemon
+    pokemon_types_ab2: poke._airbyte_raw_pokemon
+    pokemon_types_ab3: poke._airbyte_raw_pokemon
+    pokemon_types: poke._airbyte_raw_pokemon
+    pokemon_species_ab1: poke._airbyte_raw_pokemon
+    pokemon_species_ab2: poke._airbyte_raw_pokemon
+    pokemon_species_ab3: poke._airbyte_raw_pokemon
+    pokemon_species: poke._airbyte_raw_pokemon
+    pokemon_sprites_ab1: poke._airbyte_raw_pokemon
+    pokemon_sprites_ab2: poke._airbyte_raw_pokemon
+    pokemon_sprites_ab3: poke._airbyte_raw_pokemon
+    pokemon_sprites: poke._airbyte_raw_pokemon
+    pokemon_abilities_ab1: poke._airbyte_raw_pokemon
+    pokemon_abilities_ab2: poke._airbyte_raw_pokemon
+    pokemon_abilities_ab3: poke._airbyte_raw_pokemon
+    pokemon_abilities: poke._airbyte_raw_pokemon
+    pokemon_held_items_ab1: poke._airbyte_raw_pokemon
+    pokemon_held_items_ab2: poke._airbyte_raw_pokemon
+    pokemon_held_items_ab3: poke._airbyte_raw_pokemon
+    pokemon_held_items: poke._airbyte_raw_pokemon
+    pokemon_game_indices_ab1: poke._airbyte_raw_pokemon
+    pokemon_game_indices_ab2: poke._airbyte_raw_pokemon
+    pokemon_game_indices_ab3: poke._airbyte_raw_pokemon
+    pokemon_game_indices: poke._airbyte_raw_pokemon
+    pokemon_moves_move_ab1: poke._airbyte_raw_pokemon
+    pokemon_moves_move_ab2: poke._airbyte_raw_pokemon
+    pokemon_moves_move_ab3: poke._airbyte_raw_pokemon
+    pokemon_moves_move: poke._airbyte_raw_pokemon
+    pokemon_moves_version_group_details_ab1: poke._airbyte_raw_pokemon
+    pokemon_moves_version_group_details_ab2: poke._airbyte_raw_pokemon
+    pokemon_moves_version_group_details_ab3: poke._airbyte_raw_pokemon
+    pokemon_moves_version_group_details: poke._airbyte_raw_pokemon
+    pokemon_stats_stat_ab1: poke._airbyte_raw_pokemon
+    pokemon_stats_stat_ab2: poke._airbyte_raw_pokemon
+    pokemon_stats_stat_ab3: poke._airbyte_raw_pokemon
+    pokemon_stats_stat: poke._airbyte_raw_pokemon
+    pokemon_types_type_ab1: poke._airbyte_raw_pokemon
+    pokemon_types_type_ab2: poke._airbyte_raw_pokemon
+    pokemon_types_type_ab3: poke._airbyte_raw_pokemon
+    pokemon_types_type: poke._airbyte_raw_pokemon
+    pokemon_abilities_ability_ab1: poke._airbyte_raw_pokemon
+    pokemon_abilities_ability_ab2: poke._airbyte_raw_pokemon
+    pokemon_abilities_ability_ab3: poke._airbyte_raw_pokemon
+    pokemon_abilities_ability: poke._airbyte_raw_pokemon
+    pokemon_held_items_item_ab1: poke._airbyte_raw_pokemon
+    pokemon_held_items_item_ab2: poke._airbyte_raw_pokemon
+    pokemon_held_items_item_ab3: poke._airbyte_raw_pokemon
+    pokemon_held_items_item: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_ab1: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_ab2: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_ab3: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details: poke._airbyte_raw_pokemon
+    pokemon_game_indices_version_ab1: poke._airbyte_raw_pokemon
+    pokemon_game_indices_version_ab2: poke._airbyte_raw_pokemon
+    pokemon_game_indices_version_ab3: poke._airbyte_raw_pokemon
+    pokemon_game_indices_version: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__details_version_group_ab1: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__details_version_group_ab2: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__details_version_group_ab3: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__details_version_group: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__ils_move_learn_method_ab1: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__ils_move_learn_method_ab2: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__ils_move_learn_method_ab3: poke._airbyte_raw_pokemon
+    pokemon_moves_versio__ils_move_learn_method: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_version_ab1: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_version_ab2: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_version_ab3: poke._airbyte_raw_pokemon
+    pokemon_held_items_version_details_version: poke._airbyte_raw_pokemon
